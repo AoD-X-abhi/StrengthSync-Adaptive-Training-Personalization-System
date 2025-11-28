@@ -1,4 +1,10 @@
 <div align="center">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Montserrat', sans-serif !important; }
+  h1, h2, h3, h4, h5, h6, p, li, code, pre, table { font-family: 'Montserrat', sans-serif !important; }
+</style>
+
 <br>
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.0-000000?logo=flask&logoColor=white)
@@ -18,8 +24,8 @@ StrengthSyn is an intelligent, adaptive workout engine designed for serious lift
 
 Unlike basic workout loggers, StrengthSyn **analyzes your performance in real time** using:
 
-**RPE (Rate of Perceived Exertion)**
-**Reps Completed**
+**RPE (Rate of Perceived Exertion)**  
+**Reps Completed**  
 **Wellness Indicators** (sleep, stress, soreness, readiness)
 
 …and instantly adjusts your next set, training volume, and progression.
@@ -29,10 +35,12 @@ StrengthSyn learns your strength curve and **progresses you exactly when you're 
 
 Built with a minimalist UI, fast navigation, and distraction-free workflow that’s perfect for use inside the gym.
 
+<div align="center">
+<img src="observations/Login.png" width="100%" alt="StrengthSyn Login Screen"/>
+<br><br>
+</div>
 
-
-
-### 🔐 Login & Onboarding
+### Login & Onboarding
 
 StrengthSyn launches straight into a clean and distraction-free login screen designed for speed.  
 Just enter a username and password once — your account is created instantly with no emails, no OTPs, and no friction.
@@ -40,10 +48,11 @@ Just enter a username and password once — your account is created instantly wi
 The minimalist layout makes it perfect for quick gym access, even with sweaty hands or low network connectivity.
 
 <div align="center">
-<img src="observations\Login.png" width="100%" alt="StrengthSyn Login Screen"/>
+<img src="observations/Dashboard.png" width="100%" alt="StrengthSyn Dashboard with Stats & Streak"/>
+<br><br>
 </div>
 
-### 📊 Dashboard Overview
+### Dashboard Overview
 
 Your dashboard gives you a complete visual summary of your training:
 
@@ -56,10 +65,11 @@ Your dashboard gives you a complete visual summary of your training:
 Everything updates automatically based on your logged sets.
 
 <div align="center">
-<img src="observations\Dashboard.png" width="100%" alt="StrengthSyn Dashboard with Stats & Streak"/>
+<img src="observations/workout.png" width="100%" alt="Live Workout Session with Real-Time RPE Feedback"/>
+<br><br>
 </div>
 
-### 🏋️ Live Workout Session
+### Live Workout Session
 
 During every session, StrengthSyn becomes your personal strength coach.
 
@@ -75,19 +85,16 @@ During every session, StrengthSyn becomes your personal strength coach.
 Every set you complete teaches the model more about your strength curve.
 
 <div align="center">
-<img src="observations\workout.png" width="100%" alt="Live Workout Session with Real-Time RPE Feedback"/>
-</div>
-
 
 ## Tech Stack
 
-| Layer         | Technology           |
-|-------------|----------------------|
-| Backend       | Python + Flask       |
-| Frontend      | HTML + Tailwind CSS + Vanilla JS |
-| Database      | MySQL                |
-| Charts        | Chart.js             |
-| Auth & Hashing| Werkzeug Security    |
+| Layer           | Technology                     |
+|-----------------|--------------------------------|
+| Backend         | Python + Flask                 |
+| Frontend        | HTML5 + Tailwind CSS + Vanilla JS |
+| Database        | MySQL                          |
+| Charts & Graphs | Chart.js                       |
+| Auth & Hashing  | Werkzeug Security              |
 
 </div>
 
@@ -96,6 +103,10 @@ Every set you complete teaches the model more about your strength curve.
 ```bash
 pip install flask flask-cors pandas scikit-learn mysql-connector-python gunicorn joblib lightgbm cloudpickle
 
-
 git clone https://github.com/AoD-X-abhi/StrengthSync-Adaptive-Training-Personalization-System.git
+cd StrengthSync-Adaptive-Training-Personalization-System
+
+# Run schema.sql in MySQL
+# Update DB credentials in workoutapp.py
+python workoutapp.py
 ```

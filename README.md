@@ -1,6 +1,5 @@
 <div align="center">
 <br>
-
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.0-000000?logo=flask&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
@@ -8,7 +7,6 @@
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?logo=chart-dot-js&logoColor=white)
 ![Responsive](https://img.shields.io/badge/Mobile_First-10B981?logo=responsive-design&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-10B981)
-
 <br><br>
 
 # StrengthSyn

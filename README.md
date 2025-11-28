@@ -42,7 +42,7 @@ Just enter a username and password once — your account is created instantly wi
 The minimalist layout makes it perfect for quick gym access, even with sweaty hands or low network connectivity.
 
 <div align="center">
-<img src="screenshots/login.jpg" width="100%" alt="StrengthSyn Login Screen"/>
+<img src="observations\Login.png" width="100%" alt="StrengthSyn Login Screen"/>
 </div>
 
 ### 📊 Dashboard Overview
@@ -58,7 +58,7 @@ Your dashboard gives you a complete visual summary of your training:
 Everything updates automatically based on your logged sets.
 
 <div align="center">
-<img src="screenshots/dashboard.jpg" width="100%" alt="StrengthSyn Dashboard with Stats & Streak"/>
+<img src="observations\Dashboard.png" width="100%" alt="StrengthSyn Dashboard with Stats & Streak"/>
 </div>
 
 ### 🏋️ Live Workout Session
@@ -77,7 +77,7 @@ During every session, StrengthSyn becomes your personal strength coach.
 Every set you complete teaches the model more about your strength curve.
 
 <div align="center">
-<img src="screenshots/workout.jpg" width="100%" alt="Live Workout Session with Real-Time RPE Feedback"/>
+<img src="observations\workout.png" width="100%" alt="Live Workout Session with Real-Time RPE Feedback"/>
 </div>
 
 

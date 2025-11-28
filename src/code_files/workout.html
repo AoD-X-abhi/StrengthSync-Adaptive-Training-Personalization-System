@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker – In Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .progress-ring circle {
+            transition: stroke-dashoffset 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+  <!-- Main Card -->
+  <div class="w-full max-w-4xl bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+
+    <!-- Gradient Header -->
+    <div class="bg-gradient-to-r from-cyan-600 to-blue-700 px-8 py-10 text-center">
+      <h1 class="text-4xl font-bold">Workout In Progress</h1>
+      <p class="mt-3 text-cyan-100 text-lg">Stay strong. You've got this!</p>
+    </div>
+
+    <!-- Content -->
+    <div class="p-8 md:p-12">
+
+      <!-- Exercise + Progress Ring Row -->
+      <div class="flex flex-col md:flex-row items-center gap-10">
+
+        <!-- Circular Progress Tracker (Left Side) -->
+        <div class="flex-shrink-0">
+          <div class="relative w-48 h-48">
+            <svg class="w-48 h-48 transform -rotate-90">
+              <!-- Background Circle -->
+              <circle cx="94" cy="94" r="86" stroke="#1f2937" stroke-width="14" fill="none" />
+              <!-- Progress Circle -->
+              <circle cx="94" cy="94" r="86" stroke="#06b6d4" stroke-width="14" fill="none"
+                      stroke-linecap="round" stroke-dasharray="540" stroke-dashoffset="540"
+                      class="progress-ring" id="progress-circle" />
+            </svg>
+            <!-- Center Text -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-5xl font-bold text-cyan-300" id="set-counter">1/4</div>
+                <div class="text-sm text-gray-400 uppercase tracking-wider">Sets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Exercise Info + Form -->
+        <div class="flex-1 space-y-10 text-center md:text-left">
+
+          <!-- Current Exercise Display -->
+          <div id="workout-display">
+            <h2 id="exercise-name" class="text-5xl font-extrabold text-cyan-300">
+              Loading Workout...
+            </h2>
+            <div id="set-info" class="mt-6 text-2xl text-gray-200 leading-relaxed">
+              <!-- Filled dynamically by script.js -->
+            </div>
+          </div>
+
+          <!-- Log Set Form -->
+          <form id="log-set-form" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto md:mx-0">
+              <input type="number" id="reps-done" placeholder="Reps Performed" required min="0"
+                     class="px-5 py-4 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition">
+              <input type="number" id="rpe-logged" placeholder="RPE (1–10)" min="1" max="10" required
+                     class="px-5 py-4 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition">
+            </div>
+
+            <button type="submit"
+                    class="w-full max-w-md mx-auto md:mx-0 block bg-gradient-to-r from-cyan-600 to-blue-700 rounded-xl py-5 text-xl font-bold transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/40">
+              Log This Set
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- Logged Sets Table -->
+      <div class="mt-12 bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800">
+        <div class="bg-gray-800 px-6 py-4 border-b border-gray-700">
+          <h3 class="text-xl font-bold text-cyan-300">This Exercise Log</h3>
+        </div>
+        <table class="min-w-full">
+          <thead>
+            <tr class="text-left text-gray-400 text-sm font-medium">
+              <th class="px-6 py-4">Set</th>
+              <th class="px-6 py-4">Weight (kg)</th>
+              <th class="px-6 py-4">Reps</th>
+              <th class="px-6 py-4">RPE</th>
+            </tr>
+          </thead>
+          <tbody id="log-body" class="text-gray-200"></tbody>
+        </table>
+      </div>
+
+      <!-- End Workout Button -->
+      <button onclick="window.location.href='dashboard.html'"
+              class="mt-8 w-full bg-gradient-to-r from-red-600 to-pink-600 rounded-xl py-5 text-xl font-bold transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/40">
+        End Workout & Return to Dashboard
+      </button>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Auto-update progress circle & counter -->
+  <script>
+    // Only run on workout.html
+    if (window.location.pathname.includes('workout.html')) {
+      const circumference = 540; // 2 * π * 86 ≈ 540
+      const circle = document.getElementById('progress-circle');
+      const counter = document.getElementById('set-counter');
+
+      function updateProgress(currentSet) {
+        const progress = currentSet / 4;
+        const offset = circumference - (circumference * progress);
+        circle.style.strokeDashoffset = offset;
+
+        // Update text
+        counter.textContent = `${currentSet}/4`;
+
+        // Optional: Change color on completion
+        if (currentSet === 4) {
+          circle.style.stroke = '#10b981'; // emerald green
+          counter.classList.add('text-green-400');
+        } else {
+          circle.style.stroke = '#06b6d4'; // cyan
+          counter.classList.remove('text-green-400');
+        }
+      }
+
+      // Override the original updateProgress if it exists
+      window.updateProgress = updateProgress;
+
+      // Initialize on load
+      document.addEventListener('DOMContentLoaded', () => {
+        updateProgress(1); // Start at set 1
+      });
+    }
+  </script>
+</body>
+</html>

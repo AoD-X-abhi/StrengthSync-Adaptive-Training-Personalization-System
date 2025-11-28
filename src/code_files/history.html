@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Tracker – Session History</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-7xl bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+
+    <div class="bg-gradient-to-r from-green-600 to-teal-700 px-8 py-10 text-center">
+      <h1 class="text-4xl font-bold">Your Training History</h1>
+      <p class="mt-3 text-green-100 text-lg">Every session brings you closer</p>
+    </div>
+
+    <div class="p-6 md:p-12 space-y-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-900/80 rounded-xl p-5 border border-gray-700">
+          <h3 class="text-lg font-bold text-cyan-300 mb-3">Total Sessions</h3>
+          <canvas id="sessionsChart" height="240"></canvas>
+        </div>
+        <div class="bg-gray-900/80 rounded-xl p-5 border border-gray-700">
+          <h3 class="text-lg font-bold text-purple-300 mb-3">Sets per Session</h3>
+          <canvas id="avgSetsChart" height="240"></canvas>
+        </div>
+        <div class="bg-gray-900/80 rounded-xl p-5 border border-gray-700">
+          <h3 class="text-lg font-bold text-pink-300 mb-3">This Week</h3>
+          <canvas id="frequencyChart" height="120"></canvas>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="relative bg-gray-900/90 rounded-3xl p-10 border-4 border-orange-600/40 shadow-2xl">
+          <h3 class="text-2xl font-bold text-orange-400 text-center mb-6">Current Streak</h3>
+          <canvas id="streakChart" width="300" height="300"></canvas>
+          <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <div class="text-5xl font-extrabold text-orange-400 drop-shadow-2xl" id="current-streak">0</div>
+            <div class="text-2xl font-medium text-gray-300 mt-2">days</div>
+            <div class="text-xl text-gray-500 mt-6">Best: <span id="best-streak" class="text-3xl font-bold text-orange-300">0</span> days</div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="text-center">
+        <p class="text-2xl md:text-3xl font-medium" id="motivation-text">Loading your journey...</p>
+      </div>
+
+      <div class="bg-gray-900/80 rounded-xl overflow-hidden border border-gray-800">
+        <div class="bg-gray-800 px-6 py-4 border-b border-gray-700">
+          <h3 class="text-xl font-bold text-green-300">All Sessions</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead>
+              <tr class="text-left text-gray-400 text-sm font-medium">
+                <th class="px-6 py-4">Session ID</th>
+                <th class="px-6 py-4">Date & Time</th>
+                <th class="px-6 py-4">Sets</th>
+              </tr>
+            </thead>
+            <tbody id="history-body" class="text-gray-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button onclick="window.location.href='dashboard.html'"
+                class="inline-block bg-gradient-to-r from-cyan-600 to-blue-700 rounded-xl px-12 py-5 text-xl font-bold transform transition hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/50">
+          ← Back to Dashboard
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const username = localStorage.getItem('workoutAppUsername');
+      if (!username) {
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        const response = await fetch(`/session_history/${username}`);
+        if (!response.ok) throw new Error('Failed to load history');
+        let sessions = await response.json();
+
+        sessions.sort((a, b) => new Date(b.session_date) - new Date(a.session_date));
+
+        if (sessions.length === 0) {
+          document.getElementById('history-body').innerHTML = 
+            '<tr><td colspan="3" class="text-center py-16 text-gray-500 text-xl">No workouts yet.<, your streak starts today!</td></tr>';
+          document.getElementById('motivation-text').innerHTML = 
+            "Time to begin your <span class='text-cyan-400 font-bold'>legend</span>.";
+          return;
+        }
+
+        const tbody = document.getElementById('history-body');
+        sessions.forEach(s => {
+          const row = document.createElement('tr');
+          row.className = 'hover:bg-gray-800/50 transition';
+          row.innerHTML = `
+            <td class="px-6 py-4 border-t border-gray-700">${s.session_id}</td>
+            <td class="px-6 py-4 border-t[u1] border-gray-700">${new Date(s.session_date).toLocaleString()}</td>
+            <td class="px-6 py-4 border-t border-gray-700">${s.sets_performed || 0}</td>
+          `;
+          tbody.appendChild(row);
+        });
+
+        const today = new Date().toDateString();
+        const trainedToday = sessions.some(s => new Date(s.session_date).toDateString() === today);
+        const msg = document.getElementById('motivation-text');
+
+        if (trainedToday) {
+          msg.innerHTML = "You trained today — unstoppable!";
+          msg.className = "text-3xl md:text-4xl font-bold text-green-400";
+        } else if (sessions.length === 1) {
+          msg.innerHTML = "First session complete — you're officially in the game!";
+          msg.className = "text-3xl md:text-4xl font-bold text-cyan-400";
+        } else {
+          msg.innerHTML = `You've completed <span class="text-yellow-400 font-bold">${sessions.length}</span> sessions — 
+            let's make today #${sessions.length + 1}!`;
+        }
+
+        const dates = sessions.map(s => new Date(s.session_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+        const sets = sessions.map(s => s.sets_performed || 0);
+
+        new Chart(document.getElementById('sessionsChart'), {
+          type: 'line',
+          data: { labels: dates, datasets: [{ data: sessions.map((_,i)=>i+1), borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.2)', tension: 0.4, fill: true }] },
+          options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+        });
+
+        new Chart(document.getElementById('avgSetsChart'), {
+          type: 'bar',
+          data: { labels: dates, datasets: [{ data: sets, backgroundColor: '#a78bfa', borderRadius: 6 }] },
+          options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+        });
+
+        const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
+        const thisWeek = sessions.filter(s => new Date(s.session_date) >= weekAgo).length;
+        new Chart(document.getElementById('frequencyChart'), {
+          type: 'doughnut',
+          data: { datasets: [{ data: [thisWeek, 7 - thisWeek], backgroundColor: ['#ec4899', '#1f2937'], borderWidth: 0 }] },
+          options: { cutout: '70%', plugins: { legend: { display: false } } }
+        });
+
+        const uniqueDates = [...new Set(sessions.map(s => new Date(s.session_date).toDateString()))];
+        uniqueDates.sort((a, b) => new Date(b) - new Date(a));
+
+        let currentStreak = 0;
+        let bestStreak = 0;
+        let temp = 0;
+        const todayStr = new Date().toDateString();
+
+        for (let i = 0; i < uniqueDates.length; i++) {
+          const currentDate = new Date(uniqueDates[i]);
+          const prevDate = i + 1 < uniqueDates.length ? new Date(uniqueDates[i + 1]) : null;
+
+          const diff = prevDate ? Math.round((currentDate - prevDate) / (1000 * 60 * 60 * 24)) : 1;
+
+          if (diff <= 1) {
+            temp++;
+          } else {
+            bestStreak = Math.max(bestStreak, temp);
+            temp = 1;
+          }
+        }
+        bestStreak = Math.max(bestStreak, temp);
+        currentStreak = uniqueDates[0] === todayStr ? temp : (new Date(uniqueDates[0]).getTime() === new Date(todayStr).getTime() - 86400000 ? temp : 0);
+
+        if (uniqueDates.includes(todayStr)) currentStreak = temp;
+
+        document.getElementById('current-streak').textContent = currentStreak;
+        document.getElementById('best-streak').textContent = bestStreak;
+
+        new Chart(document.getElementById('streakChart'), {
+          type: 'doughnut',
+          data: {
+            datasets: [{
+              data: [currentStreak, Math.max(1, 30 - currentStreak)],
+              backgroundColor: ['#f97316', '#1f2937'],
+              borderWidth: 16,
+              borderRadius: 16,
+            }]
+          },
+          options: {
+            cutout: '85%',
+            plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          }
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('history-body').innerHTML = 
+          `<tr><td colspan="3" class="text-red-400 text-center py-12 text-xl">Error: ${err.message}</td></tr>`;
+      }
+    });
+  </script>
+</body>
+</html>

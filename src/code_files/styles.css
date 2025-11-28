@@ -1,0 +1,138 @@
+/* Reset and base styles */
+body, h1, p, label, input, button {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  box-sizing: border-box;
+  transition: color 0.3s ease;
+}
+
+/* Body styles */
+body {
+  background: linear-gradient(135deg, #e0f0ff 0%, #d7fdef 100%);
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Forms and content containers */
+form#baseline-form,
+form#daily-form,
+#workout-display {
+  background: #ffffff;
+  padding: 35px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(46, 134, 222, 0.2);
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headings */
+h1 {
+  margin-bottom: 24px;
+  font-weight: 800;
+  color: #2c3e50;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 22px;
+  font-size: 1.1em;
+  color: #34515e;
+  text-align: center;
+}
+
+/* Labels */
+label {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2a4963;
+  text-align: left;
+}
+
+/* Inputs */
+input[type="number"] {
+  padding: 12px 15px;
+  font-size: 1em;
+  border: 2px solid #90caf9;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 5px rgba(144, 202, 249, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 8px 2px rgba(30, 136, 229, 0.5);
+  outline: none;
+}
+
+/* Buttons */
+button[type="submit"] {
+  padding: 16px 0;
+  background: linear-gradient(90deg, #2196f3 0%, #21cbf3 100%);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2em;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.8px;
+  transition: background 0.4s ease;
+  margin-top: 10px;
+  box-shadow: 0 6px 12px rgba(33, 203, 243, 0.5);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #1976d2 0%, #1e88e5 100%);
+  box-shadow: 0 8px 15px rgba(25, 118, 210, 0.7);
+}
+
+/* Workout page specific styles */
+#exercise-name {
+  font-weight: 800;
+  color: #1b365d;
+  font-size: 1.6em;
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+#set-info {
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #2a4963;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* Workout form */
+form#log-set-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+form#log-set-form label {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  color: #1c3b5c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 420px) {
+  form#baseline-form,
+  form#daily-form,
+  #workout-display {
+    width: 100%;
+    padding: 25px 20px;
+  }
+}

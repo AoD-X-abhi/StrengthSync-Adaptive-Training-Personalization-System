@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strength Syn – Daily Check-in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .slider::-webkit-slider-thumb { background: #06b6d4; }
+        .slider::-moz-range-thumb { background: #06b6d4; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-2xl bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-cyan-600 to-blue-700 px-8 py-10 text-center">
+      <h1 class="text-4xl font-bold">How Are You Feeling Today?</h1>
+      <p class="mt-3 text-cyan-100 text-lg">Your answers help the AI give you the perfect workout</p>
+    </div>
+
+    <!-- Form -->
+    <div class="p-8 md:p-12">
+      <form id="daily-form" class="space-y-10">
+
+        <!-- Sleep Quality -->
+        <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-3">
+            <label class="text-xl font-semibold text-cyan-400">Sleep Quality</label>
+            <span id="sleep-value" class="text-2xl font-bold text-cyan-300">7</span>
+          </div>
+          <input type="range" id="sleep" min="1" max="10" value="7" required
+                 class="slider w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between text-sm text-gray-400 mt-2">
+            <span>Terrible</span>
+            <span>Amazing</span>
+          </div>
+        </div>
+
+        <!-- Readiness -->
+        <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-3">
+            <label class="text-xl font-semibold text-cyan-400">Readiness to Train</label>
+            <span id="readiness-value" class="text-2xl font-bold text-cyan-300">8</span>
+          </div>
+          <input type="range" id="readiness" min="1" max="10" value="8" required
+                 class="slider w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between text-sm text-gray-400 mt-2">
+            <span>Exhausted</span>
+            <span>Pumped</span>
+          </div>
+        </div>
+
+        <!-- Stress Level -->
+        <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-3">
+            <label class="text-xl font-semibold text-red-400">Stress Level</label>
+            <span id="stress-value" class="text-2xl font-bold text-red-300">4</span>
+          </div>
+          <input type="range" id="stress" min="1" max="10" value="4" required
+                 class="slider w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between text-sm text-gray-400 mt-2">
+            <span>Calm</span>
+            <span>Stressed</span>
+          </div>
+        </div>
+
+        <!-- Muscle Soreness - NOW FIXED -->
+        <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+          <div class="flex justify-between items-center mb-3">
+            <label class="text-xl font-semibold text-orange-400">Muscle Soreness</label>
+            <span id="soreness-value" class="text-2xl font-bold text-orange-300">3</span>
+          </div>
+          <input type="range" id="soreness" min="1" max="10" value="3" required
+                 class="slider w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+          <div class="flex justify-between text-sm text-gray-400 mt-2">
+            <span>None</span>
+            <span>Very Sore</span>
+          </div>
+        </div>
+
+        <!-- Submit Button - Now Slightly Shorter & Centered -->
+        <div class="flex justify-center mt-8">
+          <button type="submit"
+                  class="w-full max-w-md py-5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 
+                         font-bold text-xl rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
+            Generate My Smart Workout
+          </button>
+        </div>
+
+      </form>
+
+      <p class="text-center text-sm text-gray-500 mt-10">
+        Be honest — the AI adapts perfectly to how you feel
+      </p>
+    </div>
+  </div>
+
+  <!-- Live Slider Values -->
+  <script>
+    document.getElementById('sleep').addEventListener('input', e => {
+      document.getElementById('sleep-value').textContent = e.target.value;
+    });
+    document.getElementById('readiness').addEventListener('input', e => {
+      document.getElementById('readiness-value').textContent = e.target.value;
+    });
+    document.getElementById('stress').addEventListener('input', e => {
+      document.getElementById('stress-value').textContent = e.target.value;
+    });
+    document.getElementById('soreness').addEventListener('input', e => {
+      document.getElementById('soreness-value').textContent = e.target.value;
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

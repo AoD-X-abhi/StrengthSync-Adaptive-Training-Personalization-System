@@ -1,24 +1,4 @@
 <div align="center">
-
-# StrengthSyn
-
-### The Smart Progressive Overload Coach That Actually Listens to You
-
-StrengthSyn is an intelligent, adaptive workout engine designed for serious lifters who want **consistent, long-term strength progress** — without the guesswork.
-
-Unlike basic workout loggers, StrengthSyn **analyzes your performance in real time** using:
-
-- **RPE (Rate of Perceived Exertion)**
-- **Reps Completed**
-- **Wellness Indicators** (sleep, stress, soreness, readiness)
-
-…and instantly adjusts your next set, training volume, and progression.
-
-**No more stagnant routines. No more random jumps in weight.**  
-StrengthSyn learns your strength curve and **progresses you exactly when you're ready**.
-
-Built with a minimalist UI, fast navigation, and distraction-free workflow that’s perfect for use inside the gym.
-
 <br>
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
@@ -31,7 +11,28 @@ Built with a minimalist UI, fast navigation, and distraction-free workflow that�
 
 <br><br>
 
+# StrengthSyn
 </div>
+
+### The Smart Progressive Overload Coach That Actually Listens to You
+
+StrengthSyn is an intelligent, adaptive workout engine designed for serious lifters who want **consistent, long-term strength progress** — without the guesswork.
+
+Unlike basic workout loggers, StrengthSyn **analyzes your performance in real time** using:
+
+**RPE (Rate of Perceived Exertion)**
+**Reps Completed**
+**Wellness Indicators** (sleep, stress, soreness, readiness)
+
+…and instantly adjusts your next set, training volume, and progression.
+
+**No more stagnant routines. No more random jumps in weight.**  
+StrengthSyn learns your strength curve and **progresses you exactly when you're ready**.
+
+Built with a minimalist UI, fast navigation, and distraction-free workflow that’s perfect for use inside the gym.
+
+
+
 
 ### 🔐 Login & Onboarding
 

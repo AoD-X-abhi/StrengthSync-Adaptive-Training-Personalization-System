@@ -1,13 +1,15 @@
 <div align="center">
 <br>
   
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-3.0-000000?logo=flask&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?logo=chart-dot-js&logoColor=white)
-![Responsive](https://img.shields.io/badge/Mobile_First-10B981?logo=responsive-design&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-10B981)
+![Python](https://img.shields.io/badge/Python-3.11-0A98D5?logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0-444444?logo=flask&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-00618A?logo=mysql&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0BB4A9?logo=tailwind-css&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF4F70?logo=chart-dot-js&logoColor=white)
+![Responsive](https://img.shields.io/badge/Mobile_First-1CA45C?logo=responsive-design&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-15803D)
+
 <br><br>
 
 # StrengthSyn

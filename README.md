@@ -11,9 +11,9 @@
 <br><br>
 
 # StrengthSyn
-</div>
 
-### The Smart Progressive Overload Coach That Actually Listens to You
+
+## The Smart Progressive Overload Coach That Actually Listens to You
 
 StrengthSyn is an intelligent, adaptive workout engine designed for serious lifters who want **consistent, long-term strength progress** — without the guesswork.
 
@@ -30,7 +30,7 @@ StrengthSyn learns your strength curve and **progresses you exactly when you're 
 
 Built with a minimalist UI, fast navigation, and distraction-free workflow that’s perfect for use inside the gym.
 
-
+</div>
 
 
 ### 🔐 Login & Onboarding
